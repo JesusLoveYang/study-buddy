@@ -45,10 +45,12 @@ npm run build    # 直接构建到 ../web（部署目录）
 
 | 年级 | 单词 |
 |---|---|
-| 🧸 幼儿园 | spider, robot |
-| 📗 一年级 | apple, banana, cat, dog, fish, bird |
-| 📘 二年级 | 预留（`ready: false`，加词后改 true） |
-| 📙 三年级 | 预留 |
+| 🧸 幼儿园 | **spider, robot, ant, dragonfly** |
+| 📗 一年级 | 预留（`ready: false`） |
+| 📘 二年级 | 预留（`ready: false`） |
+| 📙 三年级 | 预留（`ready: false`） |
+
+> 当前只开放幼儿园 4 个单词。开放其他年级：在 `GRADES` 里把 `ready` 改 `true`，并在 `words` 里填单词 id。
 
 ## 新增单词
 
