@@ -108,3 +108,10 @@ body{
   .emoji{font-size:78px}
   .words{grid-template-columns:1fr 1fr}
 }
+
+/* 弹窗标题 */
+.dlg-title{font-size:16px;font-weight:800;color:#2d3f63}
+.el-dialog{border-radius:18px}
+.el-dialog__header{padding:18px 20px 6px}
+.el-dialog__body{padding:8px 20px 20px}
+.el-message{min-width:auto}

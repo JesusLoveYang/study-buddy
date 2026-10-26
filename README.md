@@ -1,38 +1,68 @@
-# 单词小课堂
+# 学习伙伴 · study-buddy
 
-儿童英语单词学习小游戏：听发音 → 拼单词 → 找不同，带小机器人助手。
+儿童英语单词学习小游戏：听真人发音 → 拼单词 → 找不同，带小机器人助手。
 
-## 目录
+## 技术栈
+
+| 项 | 选型 |
+|---|---|
+| 框架 | Vue 3 |
+| 组件库 | Element Plus |
+| 构建 | Vite 5 |
+| 部署 | 纯静态（GitHub Pages） |
+
+## 目录结构
 
 ```
-index.html      入口（自动跳转 web/）
-web/            Web 端（Vue 2 + Element-UI，vue-cli 工程 + 构建产物）
-  src/          源码
-  dist 产物      index.html / static / audio
-h5/             H5 / 小程序端（预留）
+index.html        入口，自动跳转 web/
+web/              Web 端【构建产物，部署目录】
+  index.html
+  static/         js / css
+  audio/          单词发音 mp3
+web-src/          Web 端【源码，Vite + Vue 3】
+  src/
+    components/   GradeSelect / WordList / WordGame / RobotHelper
+    data/words.js 年级 + 单词数据
+    styles/global.css
+  public/audio/   发音源文件（构建时复制到 web/audio）
+  vite.config.js  已配置 outDir: ../web，构建即发布
+h5/               H5 / 小程序端【预留】
 ```
 
-## Web 端开发
+## 本地开发
 
 ```bash
-cd web
+cd web-src
 npm install
-npm run dev      # 本地开发
-npm run build    # 构建到 dist/
+npm run dev      # 本地调试 http://localhost:5173
+npm run build    # 直接构建到 ../web（部署目录）
 ```
 
-构建后把 `web/dist/*` 复制到 `web/` 根，即为线上版本（GitHub Pages 直接托管）。
+> 注意：在**没有 package.json 的目录**执行 npm，会向上找到用户目录下的旧 lockfile，
+> 导致安装异常缓慢。务必在 `web-src/` 内执行。
 
 ## 已开放年级
 
 | 年级 | 单词 |
 |---|---|
-| 幼儿园 | spider, robot |
-| 一年级 | apple, banana, cat, dog, fish, bird |
-| 二年级 / 三年级 | 预留（`ready:false`） |
+| 🧸 幼儿园 | spider, robot |
+| 📗 一年级 | apple, banana, cat, dog, fish, bird |
+| 📘 二年级 | 预留（`ready: false`，加词后改 true） |
+| 📙 三年级 | 预留 |
 
 ## 新增单词
 
-1. `web/public/audio/<id>.mp3` 放入发音
-2. `web/src/data/words.js` 的 `WORDS` 加一条
-3. 对应年级的 `words` 数组加 id
+1. 放入音频：`web-src/public/audio/<id>.mp3`
+2. 加数据：`web-src/src/data/words.js` 的 `WORDS` 追加一条
+   ```js
+   plane: { word: 'plane', zh: '飞机', emoji: '✈️', ph: '/pleɪn/', odd: '🚁' }
+   ```
+3. 加到年级：对应 `GRADES[].words` 数组里加 `'plane'`
+4. 重新构建：`cd web-src && npm run build`
+
+## 玩法
+
+- **听一听**：播放真人发音
+- **拼一拼**：按顺序点字母，拼对得 3 星
+- **找不同**：9 宫格找出不同的图标，答对得 2 星
+- **机器人**：点它要提示；连错 2 次自动高亮正确答案
