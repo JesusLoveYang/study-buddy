@@ -8,7 +8,7 @@
 
     <div class="words">
       <button v-for="id in grade.words" :key="id" class="word-card" @click="$emit('open', id)">
-        <span class="w-emoji">{{ word(id).emoji }}</span>
+        <span class="w-emoji"><WordIcon :item="word(id)" /></span>
         <span class="w-word">{{ word(id).word }}</span>
         <span class="w-zh">{{ word(id).zh }}</span>
       </button>
@@ -18,8 +18,10 @@
 
 <script>
 import { getWord } from '../data/words'
+import WordIcon from './WordIcon.vue'
 export default {
   name: 'WordList',
+  components: { WordIcon },
   props: { grade: { type: Object, required: true } },
   methods: {
     word(id) { return getWord(id) }

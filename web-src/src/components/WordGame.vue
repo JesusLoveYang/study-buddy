@@ -7,7 +7,7 @@
     </div>
 
     <el-card class="hero-card" shadow="always">
-      <div class="emoji">{{ item.emoji }}</div>
+      <div class="emoji"><WordIcon :item="item" /></div>
       <div class="word">{{ item.word }}</div>
       <div class="ph">{{ item.ph }}</div>
       <span class="zh">{{ item.zh }}</span>
@@ -45,7 +45,7 @@
       </template>
       <div class="buggrid">
         <div v-for="(c, i) in findGrid" :key="'c' + i" class="cell"
-             :class="{ found: c.found, hintcell: c.hint, shake: c.shake }" @click="pickFind(i)">{{ c.emoji }}</div>
+             :class="{ found: c.found, hintcell: c.hint, shake: c.shake }" @click="pickFind(i)"><WordIcon :item="c.item" /></div>
       </div>
       <div class="find-msg">{{ findMsg }}</div>
       <div class="dialog-foot">
@@ -60,10 +60,11 @@
 <script>
 import { ElMessage } from 'element-plus'
 import RobotHelper from './RobotHelper.vue'
+import WordIcon from './WordIcon.vue'
 
 export default {
   name: 'WordGame',
-  components: { RobotHelper },
+  components: { RobotHelper, WordIcon },
   props: {
     item: { type: Object, required: true },
     stars: { type: Number, default: 0 }
@@ -185,7 +186,7 @@ export default {
       const odd = Math.floor(Math.random() * n)
       this.findOdd = odd
       this.findGrid = Array.from({ length: n }, (_, i) => ({
-        emoji: i === odd ? this.item.odd : this.item.emoji,
+        item: i === odd ? { emoji: this.item.odd } : this.item,
         found: false, hint: false, shake: false
       }))
     },
