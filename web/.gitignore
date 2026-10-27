@@ -1,0 +1,5 @@
+node_modules/
+.DS_Store
+npm-debug.log*
+*.local
+# dist 需要提交（GitHub Pages 直接托管），不要忽略

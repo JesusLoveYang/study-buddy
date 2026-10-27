@@ -14,32 +14,39 @@
 ## 目录结构
 
 ```
-index.html        入口，自动跳转 web/
-web/              Web 端【构建产物，部署目录】
-  index.html
-  static/         js / css
-  audio/          单词发音 mp3
-web-src/          Web 端【源码，Vite + Vue 3】
+index.html        入口，自动跳转 web/dist/
+web/              Web 端【标准 Vite 工程】
+  index.html      开发入口（npm run dev 使用，线上不要直接访问）
+  package.json
+  vite.config.js  base:'./'，outDir:'dist'
   src/
-    components/   GradeSelect / WordList / WordGame / RobotHelper
-    data/words.js 年级 + 单词数据
+    main.js
+    App.vue
+    components/   GradeSelect / WordList / WordGame / WordIcon / RobotHelper
+    data/words.js 年级 + 单词数据（改数据只动这里）
     styles/global.css
-  public/audio/   发音源文件（构建时复制到 web/audio）
-  vite.config.js  已配置 outDir: ../web，构建即发布
+  public/audio/   发音源文件（构建时复制到 dist/audio）
+  dist/           【构建产物 · GitHub Pages 部署目录】
+    index.html
+    static/       js / css
+    audio/        单词发音 mp3
 h5/               H5 / 小程序端【预留】
 ```
+
+**线上地址**:`/web/dist/`(根路径 `/` 会自动跳过去)。
+`/web/` 是 Vite 开发入口,里面引用的是 `/src/main.js`,只在本地 `npm run dev` 时有效。
 
 ## 本地开发
 
 ```bash
-cd web-src
+cd web
 npm install
 npm run dev      # 本地调试 http://localhost:5173
-npm run build    # 直接构建到 ../web（部署目录）
+npm run build    # 构建到 web/dist（部署目录）
 ```
 
 > 注意：在**没有 package.json 的目录**执行 npm，会向上找到用户目录下的旧 lockfile，
-> 导致安装异常缓慢。务必在 `web-src/` 内执行。
+> 导致安装异常缓慢。务必在 `web/` 内执行。
 
 ## 已开放年级
 
@@ -54,13 +61,13 @@ npm run build    # 直接构建到 ../web（部署目录）
 
 ## 新增单词
 
-1. 放入音频：`web-src/public/audio/<id>.mp3`
-2. 加数据：`web-src/src/data/words.js` 的 `WORDS` 追加一条
+1. 放入音频：`web/public/audio/<id>.mp3`
+2. 加数据：`web/src/data/words.js` 的 `WORDS` 追加一条
    ```js
    plane: { word: 'plane', zh: '飞机', emoji: '✈️', ph: '/pleɪn/', distract: '🚁' }
    ```
 3. 加到年级：对应 `GRADES[].words` 数组里加 `'plane'`
-4. 重新构建：`cd web-src && npm run build`
+4. 重新构建：`cd web && npm run build`
 
 ## 玩法
 

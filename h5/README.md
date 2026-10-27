@@ -3,7 +3,7 @@
 预留给手机 H5 / 小程序方向，目前为占位页。
 
 ## 规划
-- 复用 `web-src/src/data/words.js` 的单词数据（word / 中文 / emoji / 音标 / 干扰项(distract)）
+- 复用 `web/src/data/words.js` 的单词数据（word / 中文 / emoji / 音标 / 干扰项(distract)）
 - 小程序建议用 uni-app 或 Taro 新建工程，替换本文件夹内容
 - 音频：`audio/<单词id>.mp3`，与 web 端同名
 - 交互保持一致：听一听 → 拼一拼 → 找一找

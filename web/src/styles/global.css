@@ -1,0 +1,126 @@
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  background:linear-gradient(180deg,#e9f5ff 0%,#eaf7ee 100%);
+  color:#23303f;-webkit-tap-highlight-color:transparent;
+}
+.app-root{min-height:100vh}
+
+/* 通用页面 */
+.page{min-height:100vh;padding:16px 16px 40px;max-width:620px;margin:0 auto}
+.bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.bar-title{font-size:17px;font-weight:800;color:#2d3f63}
+.bar-right{font-size:12px;color:#8aa0b8;width:68px;text-align:right}
+.star-tag{font-weight:700}
+
+/* 首页 */
+.home{padding-top:34px}
+.hero{text-align:center;margin-bottom:26px}
+.logo{font-size:62px;line-height:1;animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero h1{font-size:27px;margin:10px 0 6px;color:#2d3f63;letter-spacing:1px}
+.hero p{margin:0;color:#7b8ea8;font-size:14px}
+.grades{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.grade-card{border:none;cursor:pointer;border-radius:20px;padding:20px 12px 16px;background:#fff;
+  box-shadow:0 10px 24px rgba(70,120,180,.14);display:flex;flex-direction:column;align-items:center;gap:6px;
+  font-family:inherit;transition:transform .12s}
+.grade-card:active{transform:scale(.97)}
+.grade-card .g-emoji{font-size:42px;line-height:1}
+.grade-card .g-name{font-size:17px;font-weight:800;color:#2d3f63}
+.grade-card .g-meta{font-size:12px;color:#8aa0b8}
+.grade-card .g-meta.soon{color:#c8b06a;background:#fff7e2;padding:2px 10px;border-radius:999px}
+.grade-card.locked{opacity:.6;cursor:default;background:#f7fafd;box-shadow:none;border:2px dashed #d9e5f2}
+.foot{text-align:center;color:#9fb2c6;font-size:12px;margin-top:30px}
+
+/* 单词列表 */
+.words{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.word-card{border:none;cursor:pointer;border-radius:18px;background:#fff;padding:18px 10px 14px;
+  display:flex;flex-direction:column;align-items:center;gap:4px;font-family:inherit;
+  box-shadow:0 8px 20px rgba(70,120,180,.12);transition:transform .12s}
+.word-card:active{transform:scale(.96)}
+.w-emoji{font-size:38px;line-height:1}
+.w-word{font-size:17px;font-weight:900;color:#2d3f63;letter-spacing:.5px}
+.w-zh{font-size:12px;color:#8aa0b8}
+
+/* 游戏页 */
+.game{padding-bottom:120px;max-width:520px}
+.hero-card{border-radius:22px!important;border:none!important;box-shadow:0 14px 34px rgba(70,120,180,.16)!important}
+.hero-card .el-card__body{padding:22px 18px 18px;text-align:center}
+.emoji{font-size:92px;line-height:1;filter:drop-shadow(0 10px 16px rgba(60,110,160,.22));animation:bob 3s ease-in-out infinite}
+.word{font-size:38px;font-weight:900;letter-spacing:2px;margin:10px 0 2px;color:#2d3f63}
+.ph{font-size:14px;color:#7b8ea8}
+.zh{display:inline-block;margin-top:8px;font-size:15px;font-weight:700;color:#3f7ad6;background:#eaf3ff;
+  border-radius:999px;padding:4px 14px}
+.actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+.actions .el-button{font-weight:700;border-radius:14px;padding:12px 18px;font-size:15px;margin:0}
+.btn-say{background:linear-gradient(135deg,#8fc2ff,#5a95f0)!important;border:none!important;color:#fff!important}
+.btn-spell{background:linear-gradient(135deg,#b39dff,#7b5cf0)!important;border:none!important;color:#fff!important}
+.btn-find{background:linear-gradient(135deg,#ffc46b,#ff9b3d)!important;border:none!important;color:#5a3200!important}
+.tipbox{margin-top:14px;font-size:12.5px;color:#7b8ea8;line-height:1.6}
+
+/* 拼词 */
+.slots{display:flex;gap:8px;justify-content:center;margin:6px 0 18px;flex-wrap:wrap}
+.slot{width:44px;height:52px;border-radius:12px;background:#f4f8ff;border:2px dashed #b9cde4;
+  display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#4a3a86}
+.slot.filled{border-style:solid;border-color:#7b5cf0;background:#efeaff}
+.tiles{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.tile{width:50px;height:50px;border-radius:12px;background:#ffd75e;border:none;cursor:pointer;font-size:23px;
+  font-weight:900;color:#5a4500;box-shadow:0 4px 0 #dbb02a;font-family:inherit;transition:transform .1s}
+.tile:active{transform:translateY(3px);box-shadow:0 1px 0 #dbb02a}
+.tile.used{visibility:hidden}
+.tile.hint{animation:tpulse .7s ease-in-out 3;box-shadow:0 0 0 4px rgba(123,92,240,.5),0 4px 0 #dbb02a}
+.tile.shake{animation:shake .4s}
+@keyframes tpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}
+
+/* 找不同 */
+.buggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px auto 4px;max-width:300px}
+.cell{aspect-ratio:1;border-radius:16px;border:2px solid #e2ecf7;background:#f8fbff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:30px;transition:transform .1s}
+.cell:active{transform:scale(.94)}
+.cell.found{border-color:#43c08a;background:#e8f9f0;animation:pop .4s}
+.cell.hintcell{animation:cpulse .7s ease-in-out 3;box-shadow:0 0 0 4px rgba(67,192,138,.45)}
+.cell.shake{animation:shake .4s}
+@keyframes pop{0%{transform:scale(.7)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes cpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.find-msg{text-align:center;color:#7b8ea8;font-size:13px;margin-top:10px;min-height:20px}
+.dialog-foot{text-align:center;margin-top:16px}
+
+/* 机器人 */
+.robot{position:fixed;left:8px;bottom:14px;z-index:2200;display:flex;align-items:flex-end;gap:8px}
+.robot-bubble{max-width:56vw;background:#fff;border:1px solid #e2ecf7;color:#33465c;font-size:12.5px;
+  line-height:1.5;font-weight:700;padding:9px 12px;border-radius:14px;box-shadow:0 8px 22px rgba(40,80,140,.18);
+  opacity:0;transform:translateY(6px);transition:.2s;pointer-events:none}
+.robot-bubble.show{opacity:1;transform:none}
+.robot-body{width:58px;height:72px;cursor:pointer;filter:drop-shadow(0 8px 12px rgba(40,80,140,.22));
+  animation:rfloat 3.4s ease-in-out infinite}
+@keyframes rfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.robot-body .eye{transform-box:fill-box;transform-origin:center;animation:rblink 4.2s infinite}
+@keyframes rblink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.12)}}
+.robot-body .arm{transform-box:view-box;transform-origin:62px 66px;animation:rwave 3.2s ease-in-out infinite}
+@keyframes rwave{0%,68%,100%{transform:rotate(0)}78%{transform:rotate(-24deg)}88%{transform:rotate(-8deg)}}
+
+.el-dialog{border-radius:18px}
+@media (max-width:420px){
+  .el-dialog{width:90%!important}
+  .word{font-size:32px}
+  .emoji{font-size:78px}
+  .words{grid-template-columns:1fr 1fr}
+}
+
+/* 弹窗标题 */
+.dlg-title{font-size:16px;font-weight:800;color:#2d3f63}
+.el-dialog{border-radius:18px}
+.el-dialog__header{padding:18px 20px 6px}
+.el-dialog__body{padding:8px 20px 20px}
+.el-message{min-width:auto}
+
+/* 图标：emoji 与自绘 SVG 统一 1em 大小 */
+.word-icon{display:inline-flex;align-items:center;justify-content:center;line-height:1;font-size:inherit}
+.word-icon svg{width:1em;height:1em;display:block}
+
+/* 找一找：每个图标轻微浮动（错峰） */
+@keyframes cellFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.cell .word-icon{animation:cellFloat 2.6s ease-in-out infinite;animation-delay:var(--d,0s)}
+.cell svg{filter:drop-shadow(0 3px 4px rgba(60,110,160,.18))}
