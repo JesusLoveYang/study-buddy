@@ -1,5 +1,7 @@
 node_modules/
+dist/
 .DS_Store
 npm-debug.log*
 *.local
-# dist 需要提交（GitHub Pages 直接托管），不要忽略
+
+# 说明：dist 由 GitHub Actions 构建，不再提交
