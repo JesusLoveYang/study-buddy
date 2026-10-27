@@ -34,6 +34,11 @@ jobs:
         working-directory: web
         run: npm run build
 
+      - name: Include h5 placeholder into site
+        run: |
+          mkdir -p web/dist/h5
+          cp -r h5/. web/dist/h5/
+
       - name: Disable Jekyll
         run: touch web/dist/.nojekyll
 
