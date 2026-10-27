@@ -2,32 +2,45 @@
   <div class="robot">
     <div class="robot-bubble" :class="{ show: show }">{{ tip }}</div>
     <div class="robot-body" role="button" aria-label="点我提示" @click="$emit('tap')">
-      <svg viewBox="0 0 72 88" width="100%" height="100%">
+      <svg viewBox="0 0 80 96" width="100%" height="100%">
         <defs>
-          <linearGradient id="rg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#dff0ff" /><stop offset="1" stop-color="#9cc6f2" />
+          <linearGradient id="rb1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#eafff8" /><stop offset="1" stop-color="#9fe6cf" />
           </linearGradient>
-          <linearGradient id="rg2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#a9d3ff" /><stop offset="1" stop-color="#6aa6ff" />
+          <linearGradient id="rb2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7fe0c4" /><stop offset="1" stop-color="#38b18e" />
           </linearGradient>
         </defs>
-        <line x1="36" y1="12" x2="36" y2="3" stroke="#5d7fa8" stroke-width="2.5" stroke-linecap="round" />
-        <circle cx="36" cy="3" r="3.4" fill="#ff8fb1" />
-        <rect x="12" y="12" width="48" height="36" rx="13" fill="url(#rg)" stroke="#7fa6ce" stroke-width="2" />
-        <g class="eye">
-          <circle cx="27" cy="29" r="6.5" fill="#fff" stroke="#7fa6ce" stroke-width="1.2" />
-          <circle cx="45" cy="29" r="6.5" fill="#fff" stroke="#7fa6ce" stroke-width="1.2" />
-          <circle cx="27" cy="30" r="3" fill="#22304a" /><circle cx="45" cy="30" r="3" fill="#22304a" />
+        <!-- 两根天线 -->
+        <g stroke="#3f8f78" stroke-width="2.4" stroke-linecap="round">
+          <line x1="31" y1="15" x2="26" y2="5" />
+          <line x1="49" y1="15" x2="54" y2="5" />
         </g>
-        <path d="M28 41 Q36 47 44 41" stroke="#3a5578" stroke-width="2.4" fill="none" stroke-linecap="round" />
-        <rect x="19" y="50" width="34" height="26" rx="10" fill="url(#rg2)" stroke="#5d8fc9" stroke-width="2" />
-        <circle cx="36" cy="60" r="4.2" fill="#eafaff" />
-        <rect x="27" y="67" width="18" height="3.4" rx="1.7" fill="#eafaff" opacity=".85" />
-        <rect x="11" y="53" width="7" height="17" rx="3.5" fill="#8fbdf0" stroke="#5d8fc9" stroke-width="1.6" />
+        <circle cx="25" cy="3.5" r="3.4" fill="#ff9f43" />
+        <circle cx="55" cy="3.5" r="3.4" fill="#ff9f43" />
+        <!-- 侧耳 -->
+        <rect x="8" y="30" width="6" height="14" rx="3" fill="#7fe0c4" stroke="#4bb696" stroke-width="1.4" />
+        <rect x="66" y="30" width="6" height="14" rx="3" fill="#7fe0c4" stroke="#4bb696" stroke-width="1.4" />
+        <!-- 头 -->
+        <rect x="14" y="16" width="52" height="40" rx="16" fill="url(#rb1)" stroke="#5cc4a6" stroke-width="2.4" />
+        <!-- 面罩 + 眼睛 -->
+        <rect x="21" y="26" width="38" height="20" rx="10" fill="#1f3d46" />
+        <circle class="eye" cx="32" cy="36" r="4.8" fill="#5ef0c8" />
+        <circle class="eye" cx="48" cy="36" r="4.8" fill="#5ef0c8" />
+        <circle cx="30.4" cy="34.4" r="1.5" fill="#ffffff" />
+        <circle cx="46.4" cy="34.4" r="1.5" fill="#ffffff" />
+        <!-- 身体 -->
+        <rect x="24" y="60" width="32" height="20" rx="9" fill="url(#rb2)" stroke="#3f9c82" stroke-width="2.2" />
+        <circle cx="40" cy="70" r="4.2" fill="#eafff9" />
+        <!-- 左臂 -->
+        <rect x="15" y="62" width="6" height="16" rx="3" fill="#8ce8cf" stroke="#3f9c82" stroke-width="1.6" />
+        <!-- 挥手手臂 -->
         <g class="arm">
-          <rect x="54" y="52" width="7" height="18" rx="3.5" fill="#8fbdf0" stroke="#5d8fc9" stroke-width="1.6" />
-          <circle cx="57.5" cy="52" r="4.2" fill="#dff0ff" stroke="#5d8fc9" stroke-width="1.6" />
+          <rect x="59" y="62" width="6" height="16" rx="3" fill="#8ce8cf" stroke="#3f9c82" stroke-width="1.6" />
+          <circle cx="62" cy="62" r="3.8" fill="#eafff9" stroke="#3f9c82" stroke-width="1.6" />
         </g>
+        <!-- 悬浮光 -->
+        <ellipse cx="40" cy="88" rx="17" ry="4" fill="#5ef0c8" opacity=".32" />
       </svg>
     </div>
   </div>

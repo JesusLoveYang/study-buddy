@@ -1,5 +1,6 @@
 // 年级与单词数据：新增单词 = WORDS 加一条 + public/audio/<id>.mp3 + 年级 words 里加 id
-// emoji 字段用于卡片/找不同；svg 字段可选，用于 emoji 库里没有的形象（如蜻蜓）
+// emoji 用于卡片/找一找；svg 可选（emoji 库里没有的形象，如蜻蜓）
+// distract = 「找一找」里的干扰图标（其他格子都用它）
 export const GRADES = [
   { id: 'kg', name: '幼儿园', emoji: '🧸', ready: true,  words: ['spider', 'robot', 'ant', 'dragonfly'] },
   { id: 'g1', name: '一年级', emoji: '📗', ready: false, words: [] },
@@ -31,10 +32,10 @@ const DRAGONFLY_SVG = `
 </svg>`
 
 export const WORDS = {
-  spider:    { word: 'spider',    zh: '蜘蛛',   emoji: '🕷️', ph: '/ˈspaɪdər/',     odd: '🐞' },
-  robot:     { word: 'robot',     zh: '机器人', emoji: '🤖', ph: '/ˈroʊbɑːt/',     odd: '👾' },
-  ant:       { word: 'ant',       zh: '蚂蚁',   emoji: '🐜', ph: '/ænt/',          odd: '🐝' },
-  dragonfly: { word: 'dragonfly', zh: '蜻蜓',   emoji: '🪰', ph: '/ˈdræɡənflaɪ/',  odd: '🦋', svg: DRAGONFLY_SVG }
+  spider:    { word: 'spider',    zh: '蜘蛛',   emoji: '🕷️', ph: '/ˈspaɪdər/',    distract: '🐞' },
+  robot:     { word: 'robot',     zh: '机器人', emoji: '🤖', ph: '/ˈroʊbɑːt/',    distract: '👾' },
+  ant:       { word: 'ant',       zh: '蚂蚁',   emoji: '🐜', ph: '/ænt/',         distract: '🐝' },
+  dragonfly: { word: 'dragonfly', zh: '蜻蜓',   emoji: '🪰', ph: '/ˈdræɡənflaɪ/', distract: '🦋', svg: DRAGONFLY_SVG }
 }
 
 export function getWord(id) {

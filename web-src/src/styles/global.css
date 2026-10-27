@@ -98,7 +98,7 @@ body{
 @keyframes rfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 .robot-body .eye{transform-box:fill-box;transform-origin:center;animation:rblink 4.2s infinite}
 @keyframes rblink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.12)}}
-.robot-body .arm{transform-box:view-box;transform-origin:50px 54px;animation:rwave 3.2s ease-in-out infinite}
+.robot-body .arm{transform-box:view-box;transform-origin:62px 66px;animation:rwave 3.2s ease-in-out infinite}
 @keyframes rwave{0%,68%,100%{transform:rotate(0)}78%{transform:rotate(-24deg)}88%{transform:rotate(-8deg)}}
 
 .el-dialog{border-radius:18px}
@@ -119,3 +119,8 @@ body{
 /* 图标：emoji 与自绘 SVG 统一 1em 大小 */
 .word-icon{display:inline-flex;align-items:center;justify-content:center;line-height:1;font-size:inherit}
 .word-icon svg{width:1em;height:1em;display:block}
+
+/* 找一找：每个图标轻微浮动（错峰） */
+@keyframes cellFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.cell .word-icon{animation:cellFloat 2.6s ease-in-out infinite;animation-delay:var(--d,0s)}
+.cell svg{filter:drop-shadow(0 3px 4px rgba(60,110,160,.18))}

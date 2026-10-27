@@ -1,6 +1,6 @@
 # 学习伙伴 · study-buddy
 
-儿童英语单词学习小游戏：听真人发音 → 拼单词 → 找不同，带小机器人助手。
+儿童英语单词学习小游戏：听真人发音 → 拼单词 → 找一找，带小机器人助手。
 
 ## 技术栈
 
@@ -57,7 +57,7 @@ npm run build    # 直接构建到 ../web（部署目录）
 1. 放入音频：`web-src/public/audio/<id>.mp3`
 2. 加数据：`web-src/src/data/words.js` 的 `WORDS` 追加一条
    ```js
-   plane: { word: 'plane', zh: '飞机', emoji: '✈️', ph: '/pleɪn/', odd: '🚁' }
+   plane: { word: 'plane', zh: '飞机', emoji: '✈️', ph: '/pleɪn/', distract: '🚁' }
    ```
 3. 加到年级：对应 `GRADES[].words` 数组里加 `'plane'`
 4. 重新构建：`cd web-src && npm run build`
@@ -66,5 +66,5 @@ npm run build    # 直接构建到 ../web（部署目录）
 
 - **听一听**：播放真人发音
 - **拼一拼**：按顺序点字母，拼对得 3 星
-- **找不同**：9 宫格找出不同的图标，答对得 2 星
+- **找一找**：9 宫格里找出当前单词的图标（其余是干扰图案），答对得 2 星
 - **机器人**：点它要提示；连错 2 次自动高亮正确答案

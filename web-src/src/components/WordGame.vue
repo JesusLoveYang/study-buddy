@@ -15,7 +15,7 @@
       <div class="actions">
         <el-button class="btn-say" @click="say">🔊 听一听</el-button>
         <el-button class="btn-spell" @click="openSpell">🔤 拼一拼</el-button>
-        <el-button class="btn-find" @click="openFind">🔍 找不同</el-button>
+        <el-button class="btn-find" @click="openFind">🔍 找一找</el-button>
       </div>
       <div class="tipbox">点「听一听」听真人发音 · 卡住了点左下角小机器人 🤖</div>
     </el-card>
@@ -41,10 +41,11 @@
 
     <el-dialog v-model="findVisible" width="86%" :show-close="false" :close-on-click-modal="false">
       <template #header>
-        <div class="dlg-title">找出不一样的那一个</div>
+        <div class="dlg-title">找出 <b style="color:#7b5cf0">{{ item.word }}</b> · {{ item.zh }}</div>
       </template>
       <div class="buggrid">
         <div v-for="(c, i) in findGrid" :key="'c' + i" class="cell"
+             :style="{ '--d': c.delay }"
              :class="{ found: c.found, hintcell: c.hint, shake: c.shake }" @click="pickFind(i)"><WordIcon :item="c.item" /></div>
       </div>
       <div class="find-msg">{{ findMsg }}</div>
@@ -78,7 +79,7 @@ export default {
       tiles: [],
       spellWrong: 0,
       findGrid: [],
-      findOdd: -1,
+      findTarget: -1,
       findWrong: 0,
       findMsg: '',
       robotTip: '',
@@ -177,42 +178,44 @@ export default {
     openFind() {
       this.buildFind()
       this.findVisible = true
-      this.robotSay('九个小图标里，有一个和大家不一样，找出来！')
+      this.robotSay('找一找：哪一个才是「' + this.item.word + ' ' + this.item.zh + '」？')
     },
     buildFind() {
       this.findWrong = 0
       this.findMsg = ''
       const n = 9
-      const odd = Math.floor(Math.random() * n)
-      this.findOdd = odd
+      const target = Math.floor(Math.random() * n)
+      this.findTarget = target
       this.findGrid = Array.from({ length: n }, (_, i) => ({
-        item: i === odd ? { emoji: this.item.odd } : this.item,
-        found: false, hint: false, shake: false
+        item: i === target ? this.item : { emoji: this.item.distract },
+        isTarget: i === target,
+        found: false, hint: false, shake: false,
+        delay: (i * 0.17).toFixed(2) + 's'
       }))
     },
     pickFind(i) {
       const c = this.findGrid[i]
       if (!c || c.found) return
-      if (i === this.findOdd) {
+      if (c.isTarget) {
         c.found = true
         this.$emit('add-stars', 2)
         this.findMsg = '✅ 正确！再来一局…'
-        this.robotSay('找到啦！眼力真好 🎯', 2600)
+        this.robotSay('找到 ' + this.item.word + ' 啦！🎯', 2600)
         this.say()
         setTimeout(() => { if (this.findVisible) this.buildFind() }, 1300)
       } else {
         c.shake = true
         setTimeout(() => { c.shake = false }, 420)
-        this.findMsg = '再看看～'
+        this.findMsg = '那不是' + this.item.word + '，再看看～'
         this.findWrong++
         if (this.findWrong >= 2) { this.findWrong = 0; setTimeout(() => this.findHint(), 420) }
       }
     },
     findHint() {
       if (!this.findVisible) return
-      const c = this.findGrid[this.findOdd]
+      const c = this.findGrid[this.findTarget]
       if (c) { c.hint = true; setTimeout(() => { c.hint = false }, 2400) }
-      this.robotSay('看仔细，有一个和大家不一样哦')
+      this.robotSay('看仔细，找 ' + this.item.word + '（' + this.item.zh + '）')
     }
   }
 }
