@@ -31,9 +31,28 @@ const DRAGONFLY_SVG = `
   <circle cx="53.2" cy="18.2" r="1.7" fill="#ffffff"/>
 </svg>`
 
+// 手绘小机器人（比 🤖 emoji 更可爱、线条更干净）
+const ROBOT_SVG = `
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <line x1="50" y1="17" x2="50" y2="8" stroke="#5b8fc9" stroke-width="3.4" stroke-linecap="round"/>
+  <circle cx="50" cy="6.5" r="4.2" fill="#ffb020"/>
+  <rect x="12" y="40" width="7" height="16" rx="3.5" fill="#9cc6f2" stroke="#5b8fc9" stroke-width="2.2"/>
+  <rect x="81" y="40" width="7" height="16" rx="3.5" fill="#9cc6f2" stroke="#5b8fc9" stroke-width="2.2"/>
+  <rect x="20" y="18" width="60" height="50" rx="18" fill="#dcefff" stroke="#5b8fc9" stroke-width="3"/>
+  <rect x="30" y="32" width="40" height="24" rx="11" fill="#22304a"/>
+  <circle cx="41" cy="44" r="5" fill="#7ff0d0"/>
+  <circle cx="59" cy="44" r="5" fill="#7ff0d0"/>
+  <circle cx="39.4" cy="42.4" r="1.6" fill="#ffffff"/>
+  <circle cx="57.4" cy="42.4" r="1.6" fill="#ffffff"/>
+  <rect x="32" y="70" width="36" height="20" rx="8" fill="#a9d3ff" stroke="#5b8fc9" stroke-width="3"/>
+  <circle cx="50" cy="80" r="4.2" fill="#eafaff"/>
+  <rect x="14" y="74" width="12" height="6" rx="3" fill="#9cc6f2" stroke="#5b8fc9" stroke-width="2.2"/>
+  <rect x="74" y="74" width="12" height="6" rx="3" fill="#9cc6f2" stroke="#5b8fc9" stroke-width="2.2"/>
+</svg>`
+
 export const WORDS = {
   spider:    { word: 'spider',    zh: '蜘蛛',   emoji: '🕷️', ph: '/ˈspaɪdər/',    distract: '🐞' },
-  robot:     { word: 'robot',     zh: '机器人', emoji: '🤖', ph: '/ˈroʊbɑːt/',    distract: '👾' },
+  robot:     { word: 'robot',     zh: '机器人', emoji: '🤖', ph: '/ˈroʊbɑːt/',    distract: '👾', svg: ROBOT_SVG },
   ant:       { word: 'ant',       zh: '蚂蚁',   emoji: '🐜', ph: '/ænt/',         distract: '🐝' },
   dragonfly: { word: 'dragonfly', zh: '蜻蜓',   emoji: '🪰', ph: '/ˈdræɡənflaɪ/', distract: '🦋', svg: DRAGONFLY_SVG }
 }
