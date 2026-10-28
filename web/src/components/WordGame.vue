@@ -22,7 +22,10 @@
 
     <el-dialog v-model="spellVisible" width="86%" :show-close="false" :close-on-click-modal="false">
       <template #header>
-        <div class="dlg-title">按顺序拼出 <b style="color:#7b5cf0">{{ item.word }}</b></div>
+        <div class="dlg-title">
+          <span class="dlg-label">按顺序拼出</span>
+          <b class="dlg-word">{{ item.word }}</b>
+        </div>
       </template>
       <div class="slots">
         <div v-for="(s, i) in letters" :key="'s' + i" class="slot" :class="{ filled: i < index }">
@@ -41,7 +44,11 @@
 
     <el-dialog v-model="findVisible" width="86%" :show-close="false" :close-on-click-modal="false">
       <template #header>
-        <div class="dlg-title">找出 <b style="color:#7b5cf0">{{ item.word }}</b> · {{ item.zh }}</div>
+        <div class="dlg-title">
+          <span class="dlg-label">找出</span>
+          <b class="dlg-word">{{ item.word }}</b>
+          <span class="dlg-sub">{{ item.zh }}</span>
+        </div>
       </template>
       <div class="buggrid">
         <div v-for="(c, i) in findGrid" :key="'c' + i" class="cell"
