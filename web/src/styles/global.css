@@ -47,7 +47,8 @@ body{
 .game{padding-bottom:120px;max-width:520px}
 .hero-card{border-radius:22px!important;border:none!important;box-shadow:0 14px 34px rgba(70,120,180,.16)!important}
 .hero-card .el-card__body{padding:22px 18px 18px;text-align:center}
-.emoji{font-size:92px;line-height:1;filter:drop-shadow(0 10px 16px rgba(60,110,160,.22));animation:bob 3s ease-in-out infinite}
+.emoji{font-size:92px;line-height:1;cursor:pointer;filter:drop-shadow(0 10px 16px rgba(60,110,160,.22));animation:bob 3s ease-in-out infinite;transition:filter .15s}
+.emoji:active{filter:drop-shadow(0 6px 10px rgba(60,110,160,.28)) brightness(.96)}
 .word{font-size:38px;font-weight:900;letter-spacing:2px;margin:10px 0 2px;color:#2d3f63}
 .ph{font-size:14px;color:#7b8ea8}
 .zh{display:inline-block;margin-top:8px;font-size:15px;font-weight:700;color:#3f7ad6;background:#eaf3ff;
