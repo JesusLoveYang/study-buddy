@@ -7,13 +7,13 @@
     </div>
 
     <el-card class="hero-card" shadow="always">
-      <div class="emoji" role="button" aria-label="点图标听发音" @click="say"><WordIcon :item="item" /></div>
-      <div class="word" role="button" aria-label="点单词听发音" @click="say">{{ item.word }}</div>
+      <div class="emoji" role="button" aria-label="点图标听发音" @click="sayAndStar"><WordIcon :item="item" /></div>
+      <div class="word" role="button" aria-label="点单词听发音" @click="sayAndStar">{{ item.word }}</div>
       <div class="ph">{{ item.ph }}</div>
       <span class="zh">{{ item.zh }}</span>
 
       <div class="actions">
-        <el-button class="btn-say" @click="say">🔊 听一听</el-button>
+        <el-button class="btn-say" @click="sayAndStar">🔊 听一听</el-button>
         <el-button class="btn-spell" @click="openSpell">🔤 拼一拼</el-button>
         <el-button class="btn-find" @click="openFind">🔍 找一找</el-button>
       </div>
@@ -122,6 +122,11 @@ export default {
         const p = this.audio.play()
         if (p && p.catch) p.catch(() => {})
       } catch (e) {}
+    },
+    // 用户主动点发音：播放 + 星星 +1（程序内自动播放仍用 say，不计星）
+    sayAndStar() {
+      this.say()
+      this.$emit('add-stars', 1)
     },
     robotSay(t, ms) {
       this.robotTip = t
