@@ -68,6 +68,7 @@
 <script>
 import { ElMessage } from 'element-plus'
 import RobotHelper from './RobotHelper.vue'
+import { preloadWord, playWord } from '../utils/audio'
 import WordIcon from './WordIcon.vue'
 
 export default {
@@ -91,7 +92,6 @@ export default {
       findMsg: '',
       robotTip: '',
       robotShow: false,
-      audio: null,
       timer: null
     }
   },
@@ -99,14 +99,15 @@ export default {
     letters() { return this.item.word.split('') }
   },
   mounted() {
+    preloadWord(this.item.id)
     this.robotSay('嗨！我是小机器人，点我可以要提示 🤖', 4200)
   },
   beforeUnmount() {
     clearTimeout(this.timer)
-    if (this.audio) { try { this.audio.pause() } catch (e) {} }
   },
   watch: {
     item() {
+      preloadWord(this.item.id)
       this.index = 0
       this.tiles = []
       this.spellWrong = 0
@@ -115,13 +116,7 @@ export default {
   },
   methods: {
     say() {
-      try {
-        if (this.audio) { try { this.audio.pause() } catch (e) {} }
-        this.audio = new Audio('audio/' + this.item.id + '.mp3')
-        this.audio.volume = 1
-        const p = this.audio.play()
-        if (p && p.catch) p.catch(() => {})
-      } catch (e) {}
+      playWord(this.item.id)
     },
     // 用户主动点发音：播放 + 星星 +1（程序内自动播放仍用 say，不计星）
     sayAndStar() {

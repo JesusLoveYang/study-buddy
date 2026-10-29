@@ -10,13 +10,18 @@
 import GradeSelect from './components/GradeSelect.vue'
 import WordList from './components/WordList.vue'
 import WordGame from './components/WordGame.vue'
-import { GRADES, getWord } from './data/words'
+import { GRADES, WORDS, getWord } from './data/words'
+import { preloadAll } from './utils/audio'
 
 export default {
   name: 'App',
   components: { GradeSelect, WordList, WordGame },
   data() {
     return { view: 'home', grades: GRADES, grade: null, item: null, stars: 0 }
+  },
+  mounted() {
+    // 进入页面就把所有单词发音预加载好，点下去即响
+    preloadAll(Object.keys(WORDS))
   },
   methods: {
     openGrade(g) {
