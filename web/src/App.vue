@@ -26,6 +26,7 @@ export default {
     },
     openWord(id) {
       this.item = getWord(id)
+      this.stars = 0        // 每次进入单词页，星星重新计
       this.view = 'game'
     },
     addStars(n) {
