@@ -82,20 +82,18 @@ npm run build    # 构建到 web/dist，可用 npm run preview 预览
 3. 加到年级：对应 `GRADES[].words` 数组里加 `'plane'`
 4. 推送到 `main`，Actions 会自动构建发布（本地验证可先 `npm run build`）
 
-## 音频预加载策略
+## 音频加载策略
 
 单词音频放在 `web/public/audio/<id>.mp3`，由 `web/src/utils/audio.js` 统一管理。
 
-| 机制 | 说明 |
+| 时机 | 行为 |
 |---|---|
-| 预加载 | `preloadWord(id)` 创建 `Audio` 对象并 `load()`，**复用同一实例**，点击即响 |
-| 批量上限 | `preloadList(ids, { limit: 12 })`，词表再长也只加载前 12 个 |
-| 进入年级 | 预加载该年级的单词（上限 12） |
-| 进入单词 | 预加载当前词 + 列表中的下一个 |
-| 缓存版本 | `audio/<id>.mp3?v=1`，替换音频后把 `AUDIO_VERSION` +1 即可刷新缓存 |
+| 打开页面 / 年级列表 | **不加载**任何音频 |
+| 进入某个单词 | 预加载**当前单词**的发音(`preloadWord`) |
+| 点击发音 | 复用已加载实例，`currentTime=0` 后直接播，秒响 |
+| 切换单词 | 新词进入时再预加载它自己 |
 
-调整首屏开销：改 `src/App.vue` 里的 `PRELOAD_LIMIT`。
-词数超过 100 时建议只预加载当前词 + 相邻词（把 `PRELOAD_LIMIT` 设成 3 即可）。
+替换了某个发音文件，把 `audio.js` 里的 `AUDIO_VERSION` 加 1，浏览器就会拉新文件。
 
 ## 玩法
 
