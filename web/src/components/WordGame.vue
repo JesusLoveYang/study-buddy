@@ -8,7 +8,7 @@
 
     <el-card class="hero-card" shadow="always">
       <div class="emoji" role="button" aria-label="点图标听发音" @click="say"><WordIcon :item="item" /></div>
-      <div class="word">{{ item.word }}</div>
+      <div class="word" role="button" aria-label="点单词听发音" @click="say">{{ item.word }}</div>
       <div class="ph">{{ item.ph }}</div>
       <span class="zh">{{ item.zh }}</span>
 

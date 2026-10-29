@@ -49,7 +49,8 @@ body{
 .hero-card .el-card__body{padding:22px 18px 18px;text-align:center}
 .emoji{font-size:92px;line-height:1;cursor:pointer;filter:drop-shadow(0 10px 16px rgba(60,110,160,.22));animation:bob 3s ease-in-out infinite;transition:filter .15s}
 .emoji:active{filter:drop-shadow(0 6px 10px rgba(60,110,160,.28)) brightness(.96)}
-.word{font-size:38px;font-weight:900;letter-spacing:2px;margin:10px 0 2px;color:#2d3f63}
+.word{font-size:38px;font-weight:900;letter-spacing:2px;margin:10px 0 2px;color:#2d3f63;cursor:pointer;transition:transform .12s,color .12s}
+.word:active{transform:scale(.96);color:#4f7ad6}
 .ph{font-size:14px;color:#7b8ea8}
 .zh{display:inline-block;margin-top:8px;font-size:15px;font-weight:700;color:#3f7ad6;background:#eaf3ff;
   border-radius:999px;padding:4px 14px}
