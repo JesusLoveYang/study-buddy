@@ -90,13 +90,15 @@ body{
 .dialog-foot{text-align:center;margin-top:16px}
 
 /* 机器人 */
-.robot{position:fixed;left:8px;bottom:14px;z-index:2200;display:flex;align-items:flex-end;gap:8px}
+.robot{position:fixed;z-index:2200;display:flex;align-items:flex-end;gap:8px;touch-action:none}
+.robot.flip{flex-direction:row-reverse}
 .robot-bubble{max-width:56vw;background:#fff;border:1px solid #e2ecf7;color:#33465c;font-size:12.5px;
   line-height:1.5;font-weight:700;padding:9px 12px;border-radius:14px;box-shadow:0 8px 22px rgba(40,80,140,.18);
   opacity:0;transform:translateY(6px);transition:.2s;pointer-events:none}
 .robot-bubble.show{opacity:1;transform:none}
-.robot-body{width:58px;height:72px;cursor:pointer;filter:drop-shadow(0 8px 12px rgba(40,80,140,.22));
-  animation:rfloat 3.4s ease-in-out infinite}
+.robot-body{width:58px;height:72px;cursor:grab;touch-action:none;user-select:none;
+  filter:drop-shadow(0 8px 12px rgba(40,80,140,.22));animation:rfloat 3.4s ease-in-out infinite}
+.robot-body.dragging{cursor:grabbing;animation:none}
 @keyframes rfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 .robot-body .eye{transform-box:fill-box;transform-origin:center;animation:rblink 4.2s infinite}
 @keyframes rblink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.12)}}
