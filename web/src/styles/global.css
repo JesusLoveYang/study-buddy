@@ -117,6 +117,22 @@ body{
 .dlg-title .dlg-label{font-size:14px;color:#5a6d82}
 .dlg-title .dlg-word{font-size:24px;line-height:1.15;color:#7b5cf0;font-weight:900;letter-spacing:.3px;padding-bottom:5px}
 .dlg-title .dlg-sub{font-size:14px;color:#7a8ea8;font-weight:700}
+.dlg-title .spacer{flex:1}
+
+/* 记忆模式：听 / 显示-隐藏 按钮 */
+.dlg-tools{display:flex;gap:8px}
+.dlg-tool{display:inline-flex;align-items:center;gap:5px;border:1px solid #e2ecf7;background:#fff;
+  color:#4a5b6b;font-family:inherit;font-size:12.5px;font-weight:800;line-height:1;padding:7px 11px;
+  border-radius:11px;cursor:pointer;transition:.15s;white-space:nowrap}
+.dlg-tool:active{transform:scale(.95)}
+.dlg-tool.play{color:#2f6fd0;border-color:#cfe3ff;background:#f2f8ff}
+.dlg-tool.eye.on{color:#6a4cff;border-color:#d9cfff;background:#efeaff}
+
+/* 单词行：显示单词 or ● 占位 */
+.word-row{margin:10px 0 2px;min-height:38px;display:flex;align-items:center;justify-content:center}
+.dlg-word.gone{display:none}
+.dlg-mask{font-size:20px;letter-spacing:6px;color:#c3d3e4;font-weight:900}
+.dlg-mask.gone{display:none}
 .el-dialog{border-radius:18px}
 .el-dialog__header{padding:18px 20px 6px}
 .el-dialog__body{padding:8px 20px 20px}

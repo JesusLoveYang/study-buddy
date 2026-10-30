@@ -24,9 +24,20 @@
       <template #header>
         <div class="dlg-title">
           <span class="dlg-label">按顺序拼出</span>
-          <b class="dlg-word">{{ item.word }}</b>
+          <span class="spacer"></span>
+          <div class="dlg-tools">
+            <button class="dlg-tool play" @click="say">🔊 听</button>
+            <button class="dlg-tool eye" :class="{ on: wordShown }" @click="toggleWord">
+              {{ wordShown ? '🙈 隐藏' : '👁 显示' }}
+            </button>
+          </div>
         </div>
       </template>
+
+      <div class="word-row">
+        <b class="dlg-word" :class="{ gone: !wordShown }">{{ item.word }}</b>
+        <span class="dlg-mask" :class="{ gone: wordShown }">{{ maskDots }}</span>
+      </div>
       <div class="slots">
         <div v-for="(s, i) in letters" :key="'s' + i" class="slot" :class="{ filled: i < index }">
           {{ i < index ? s : '' }}
@@ -83,6 +94,9 @@ export default {
     return {
       spellVisible: false,
       findVisible: false,
+      wordShown: false,     // 单词是否显示
+      revealed: false,      // 本轮是否手动点过「显示」（用过提示 -> 星星打折）
+      flashTimer: null,
       index: 0,
       tiles: [],
       spellWrong: 0,
@@ -96,7 +110,8 @@ export default {
     }
   },
   computed: {
-    letters() { return this.item.word.split('') }
+    letters() { return this.item.word.split('') },
+    maskDots() { return this.item.word.split('').map(() => '●').join(' ') }
   },
   mounted() {
     preloadWord(this.item.id)
@@ -104,6 +119,7 @@ export default {
   },
   beforeUnmount() {
     clearTimeout(this.timer)
+    clearTimeout(this.flashTimer)
   },
   watch: {
     item() {
@@ -138,6 +154,8 @@ export default {
     resetSpell() {
       this.index = 0
       this.spellWrong = 0
+      this.revealed = false
+      this.flashWord()
       const pool = this.item.word.split('').concat(['a', 'o', 'm'])
         .map(ch => ({ ch, used: false, hint: false, shake: false }))
       for (let i = pool.length - 1; i > 0; i--) {
@@ -145,6 +163,20 @@ export default {
         const tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp
       }
       this.tiles = pool
+    },
+    // 打开/重置时：先闪现单词 1.5 秒，再藏起来（记忆模式）
+    flashWord() {
+      this.wordShown = true
+      clearTimeout(this.flashTimer)
+      this.flashTimer = setTimeout(() => {
+        if (!this.revealed) this.wordShown = false
+      }, 1500)
+    },
+    // 手动显示 / 隐藏（可无限来回切换）
+    toggleWord() {
+      clearTimeout(this.flashTimer)
+      this.wordShown = !this.wordShown
+      if (this.wordShown) this.revealed = true
     },
     openSpell() {
       this.resetSpell()
@@ -160,9 +192,10 @@ export default {
         t.used = true
         this.index++
         if (this.index === this.item.word.length) {
-          this.$emit('add-stars', 3)
+          const gained = this.revealed ? 1 : 3   // 看过提示只给 1 星
+          this.$emit('add-stars', gained)
           this.robotSay('拼对啦！你拼出了 ' + this.item.word + ' 🎉', 3200)
-          ElMessage({ message: '太棒了！' + this.item.word + ' 🎉', type: 'success', duration: 1200 })
+          ElMessage({ message: '太棒了！' + this.item.word + ' 🎉 ⭐' + gained, type: 'success', duration: 1200 })
           this.say()
           setTimeout(() => { if (this.spellVisible) this.resetSpell() }, 1600)
         }
