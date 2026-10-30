@@ -115,7 +115,7 @@ body{
 .dlg-title{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
   font-size:14px;font-weight:800;color:#2d3f63;line-height:1.3;min-height:32px}
 .dlg-title .dlg-label{font-size:14px;color:#5a6d82}
-.dlg-title .dlg-word{font-size:24px;line-height:1.15;color:#7b5cf0;font-weight:900;letter-spacing:.3px;padding-bottom:5px}
+.dlg-title .dlg-word{font-size:24px;line-height:1.15;color:#2f6fd0;font-weight:900;letter-spacing:.3px;padding-bottom:5px}
 .dlg-title .dlg-sub{font-size:14px;color:#7a8ea8;font-weight:700}
 .dlg-title .spacer{flex:1}
 
@@ -129,9 +129,11 @@ body{
 .dlg-tool.eye.on{color:#6a4cff;border-color:#d9cfff;background:#efeaff}
 
 /* 单词行：显示单词 or ● 占位 */
-.word-row{margin:10px 0 2px;min-height:38px;display:flex;align-items:center;justify-content:center}
+.word-row{margin:10px 0 2px;min-height:38px;display:flex;align-items:center;justify-content:center;
+  flex-wrap:nowrap;overflow:hidden;white-space:nowrap}
+.dlg-word{font-size:24px;line-height:1.15;color:#2f6fd0;font-weight:900;letter-spacing:.5px;padding-bottom:5px;white-space:nowrap}
 .dlg-word.gone{display:none}
-.dlg-mask{font-size:20px;letter-spacing:6px;color:#c3d3e4;font-weight:900}
+.dlg-mask{font-size:24px;letter-spacing:4px;color:#c3d3e4;font-weight:900;white-space:nowrap}
 .dlg-mask.gone{display:none}
 .el-dialog{border-radius:18px}
 .el-dialog__header{padding:18px 20px 6px}

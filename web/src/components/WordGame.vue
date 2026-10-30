@@ -36,7 +36,7 @@
 
       <div class="word-row">
         <b class="dlg-word" :class="{ gone: !wordShown }">{{ item.word }}</b>
-        <span class="dlg-mask" :class="{ gone: wordShown }">{{ maskDots }}</span>
+        <span class="dlg-mask" :class="{ gone: wordShown }">{{ maskText }}</span>
       </div>
       <div class="slots">
         <div v-for="(s, i) in letters" :key="'s' + i" class="slot" :class="{ filled: i < index }">
@@ -110,7 +110,7 @@ export default {
   },
   computed: {
     letters() { return this.item.word.split('') },
-    maskDots() { return this.item.word.split('').map(() => '●').join(' ') }
+    maskText() { return '*'.repeat(this.item.word.length) }
   },
   mounted() {
     preloadWord(this.item.id)
