@@ -2,7 +2,7 @@
 // emoji 用于卡片/找一找；svg 可选（emoji 库里没有的形象，如蜻蜓）
 // distract = 「找一找」里的干扰图标（其他格子都用它）
 export const GRADES = [
-  { id: 'kg', name: '幼儿园', emoji: '🧸', ready: true,  words: ['spider', 'robot', 'ant', 'dragonfly'] },
+  { id: 'kg', name: '幼儿园', emoji: '🧸', ready: true,  words: ['spider', 'robot', 'ant', 'dragonfly', 'toe', 'umbrella'] },
   { id: 'g1', name: '一年级', emoji: '📗', ready: false, words: [] },
   { id: 'g2', name: '二年级', emoji: '📘', ready: false, words: [] },
   { id: 'g3', name: '三年级', emoji: '📙', ready: false, words: [] }
@@ -54,7 +54,9 @@ export const WORDS = {
   spider:    { word: 'spider',    zh: '蜘蛛',   emoji: '🕷️', ph: '/ˈspaɪdər/',    distract: '🐞' },
   robot:     { word: 'robot',     zh: '机器人', emoji: '🤖', ph: '/ˈroʊbɑːt/',    distract: '👾', svg: ROBOT_SVG },
   ant:       { word: 'ant',       zh: '蚂蚁',   emoji: '🐜', ph: '/ænt/',         distract: '🐝' },
-  dragonfly: { word: 'dragonfly', zh: '蜻蜓',   emoji: '🪰', ph: '/ˈdræɡənflaɪ/', distract: '🦋', svg: DRAGONFLY_SVG }
+  dragonfly: { word: 'dragonfly', zh: '蜻蜓',   emoji: '🪰', ph: '/ˈdræɡənflaɪ/', distract: '🦋', svg: DRAGONFLY_SVG },
+  toe:       { word: 'toe',       zh: '脚趾',   emoji: '🦶', ph: '/toʊ/',          distract: '👟' },
+  umbrella:  { word: 'umbrella',  zh: '雨伞',   emoji: '☂️', ph: '/ʌmˈbrelə/',     distract: '🌧️' }
 }
 
 export function getWord(id) {

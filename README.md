@@ -65,7 +65,7 @@ npm run build    # 构建到 web/dist，可用 npm run preview 预览
 
 | 年级 | 单词 |
 |---|---|
-| 🧸 幼儿园 | **spider, robot, ant, dragonfly** |
+| 🧸 幼儿园 | **spider, robot, ant, dragonfly, toe, umbrella**(6 个) |
 | 📗 一年级 | 预留（`ready: false`） |
 | 📘 二年级 | 预留（`ready: false`） |
 | 📙 三年级 | 预留（`ready: false`） |
