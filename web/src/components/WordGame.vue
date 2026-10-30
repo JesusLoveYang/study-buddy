@@ -96,7 +96,6 @@ export default {
       findVisible: false,
       wordShown: false,     // 单词是否显示
       revealed: false,      // 本轮是否手动点过「显示」（用过提示 -> 星星打折）
-      flashTimer: null,
       index: 0,
       tiles: [],
       spellWrong: 0,
@@ -119,7 +118,6 @@ export default {
   },
   beforeUnmount() {
     clearTimeout(this.timer)
-    clearTimeout(this.flashTimer)
   },
   watch: {
     item() {
@@ -155,7 +153,7 @@ export default {
       this.index = 0
       this.spellWrong = 0
       this.revealed = false
-      this.flashWord()
+      this.wordShown = false      // 进弹窗默认隐藏（单词页上已经看过）
       const pool = this.item.word.split('').concat(['a', 'o', 'm'])
         .map(ch => ({ ch, used: false, hint: false, shake: false }))
       for (let i = pool.length - 1; i > 0; i--) {
@@ -164,17 +162,8 @@ export default {
       }
       this.tiles = pool
     },
-    // 打开/重置时：先闪现单词 1.5 秒，再藏起来（记忆模式）
-    flashWord() {
-      this.wordShown = true
-      clearTimeout(this.flashTimer)
-      this.flashTimer = setTimeout(() => {
-        if (!this.revealed) this.wordShown = false
-      }, 1500)
-    },
     // 手动显示 / 隐藏（可无限来回切换）
     toggleWord() {
-      clearTimeout(this.flashTimer)
       this.wordShown = !this.wordShown
       if (this.wordShown) this.revealed = true
     },
