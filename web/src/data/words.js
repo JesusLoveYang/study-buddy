@@ -50,6 +50,25 @@ const ROBOT_SVG = `
   <rect x="74" y="74" width="12" height="6" rx="3" fill="#9cc6f2" stroke="#5b8fc9" stroke-width="2.2"/>
 </svg>`
 
+// 手绘「跳」：张腿举手 + 两侧向上箭头（小尺寸也认得出）
+const JUMP_SVG = `
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g stroke="#2f6fd0" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M50 32 L50 56"/>
+    <path d="M50 39 L34 26"/>
+    <path d="M50 39 L66 26"/>
+    <path d="M50 56 L36 80"/>
+    <path d="M50 56 L64 80"/>
+    <path d="M36 80 L29 83"/>
+    <path d="M64 80 L71 83"/>
+  </g>
+  <circle cx="50" cy="21" r="9.5" fill="#2f6fd0"/>
+  <g stroke="#7b5cf0" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M13 62 L13 42 M7 49 L13 42 L19 49"/>
+    <path d="M87 62 L87 42 M81 49 L87 42 L93 49"/>
+  </g>
+</svg>`
+
 export const WORDS = {
   spider:    { word: 'spider',    zh: '蜘蛛',   emoji: '🕷️', ph: '/ˈspaɪdər/',    distract: '🐞' },
   robot:     { word: 'robot',     zh: '机器人', emoji: '🤖', ph: '/ˈroʊbɑːt/',    distract: '👾', svg: ROBOT_SVG },
@@ -58,7 +77,7 @@ export const WORDS = {
   toe:       { word: 'toe',       zh: '脚趾',   emoji: '🦶', ph: '/toʊ/',          distract: '👟' },
   umbrella:  { word: 'umbrella',  zh: '雨伞',   emoji: '☂️', ph: '/ʌmˈbrelə/',     distract: '🌧️' },
   run:       { word: 'run',       zh: '跑',     emoji: '🏃', ph: '/rʌn/',          distract: '🚶' },
-  jump:      { word: 'jump',      zh: '跳',     emoji: '🤸', ph: '/dʒʌmp/',        distract: '🕺' }
+  jump:      { word: 'jump',      zh: '跳',     emoji: '🤸', ph: '/dʒʌmp/',        distract: '🕺', svg: JUMP_SVG }
 }
 
 export function getWord(id) {
